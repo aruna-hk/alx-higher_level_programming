@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#execute python file
+#store in environment variable PYFILE
+file=$PYFILE
+
+if [ ! -f "$file" ];
+	then
+		 echo "Error: File '$file' not found."
+		exit 2
+fi
+line=$(head -n 1 $file)
+line=$(echo "$line" | sed 's/^#!//')
+line=$(echo "$line" | sed 's/\n$//')
+$line $PYFILE
+exit 0
