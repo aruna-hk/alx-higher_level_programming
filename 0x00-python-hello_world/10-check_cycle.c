@@ -6,7 +6,7 @@
 */
 int check_cycle(listint_t *list)
 {
-	int *p = list;
+	long int *p = list;
 
 	if (list == NULL)
 		return (0);
