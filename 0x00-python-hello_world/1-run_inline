@@ -1,7 +1,2 @@
 #!/bin/bash
-#execute inline code
-
-/usr/bin/python3 << EOF
-$PYCODE
-EOF
-exit 0
+/usr/bin/python3 << EOF $PYCODE EOF
