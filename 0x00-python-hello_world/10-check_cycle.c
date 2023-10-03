@@ -6,10 +6,11 @@
 */
 int check_cycle(listint_t *list)
 {
-	long int p = (long int)list;
+	long int p;
 
 	if (list == NULL)
 		return (0);
+	p = (long int)list;
 	list = list->next;
 	if (list == NULL)
 		return (0);
