@@ -28,5 +28,4 @@ def calculator_():
         exit(1)
 
 
-if __name__ == "__main__":
-    calculator_()
+calculator_()
