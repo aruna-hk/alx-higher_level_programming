@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 def imp():
+    a = 1
+    b = 2
     import add_0
-    print("{} + {} = {}".format(1, 2, 1 + 2))
+    print("{} + {} = {}".format(a, b, add_0.add(a, b)))
 
 
 if __name__ == "__main__":
