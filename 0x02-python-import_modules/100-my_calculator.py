@@ -4,7 +4,7 @@ import calculator_1
 
 
 def calculator_():
-    if (len(sys.argv) < 4):
+    if (len(sys.argv) != 4):
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         exit(1)
     if (len(sys.argv[2]) == 1 and sys.argv[2] == "+"):
