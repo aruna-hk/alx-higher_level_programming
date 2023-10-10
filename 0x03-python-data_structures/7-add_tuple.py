@@ -2,7 +2,7 @@
 
 
 def add_tuple(tuple_a=(), tuple_b=()):
-    is = []
+    lis = []
     if (len(tuple_a) > len(tuple_b) and len(tuple_a) >= 2):
         for i in range(2):
             if(i > (len(tuple_b) - 1)):
