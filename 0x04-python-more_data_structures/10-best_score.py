@@ -6,7 +6,12 @@ def best_score(a_dictionary):
         return None
     maxmarks = 0
     for i in a_dictionary:
-        if (a_dictionary.get(i) > maxmarks):
-            maxmarks = a_dictionary.get(i)
-            student = i
+        try:
+            if (a_dictionary.get(i) > maxmarks):
+                maxmarks = a_dictionary.get(i)
+                student = i
+        finally:
+            continue
+    if (maxmarks == 0):
+        return None
     return student
