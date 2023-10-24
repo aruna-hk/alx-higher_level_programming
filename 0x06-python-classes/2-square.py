@@ -18,10 +18,8 @@ class Square:
             args:
                 size (int): instatiate private size attribute
         """
-        if isinstance(size, int):
-            if (size < 0):
-                raise(ValueError("size must be >= 0"))
-            else:
-                self.__size = size
-        else:
+        if (type(size) is not int):
             raise(TypeError("size must be an integer"))
+        if (size < 0):
+            raise(ValueError("size must be >= 0"))
+        self.__size = size
