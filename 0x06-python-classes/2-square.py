@@ -11,13 +11,10 @@ class Square:
 
         Attrubutes:
             size (int): to instatiate private size attribute
+        args:
+            size (int): instatiate private size attribute
     """
     def __init__(self, size=0):
-        """ init function -instaiates orcts attributes
-
-            args:
-                size (int): instatiate private size attribute
-        """
         if (type(size) is not int):
             raise(TypeError("size must be an integer"))
         if (size < 0):
