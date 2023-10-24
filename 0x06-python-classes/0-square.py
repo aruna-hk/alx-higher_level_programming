@@ -1,5 +1,11 @@
 #!/usr/bin/python3
 
+
+"""
+    square class performes nothing
+"""
+
+
 class Square:
     """ square class
 
