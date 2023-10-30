@@ -57,21 +57,10 @@ class Rectangle:
         return (2 * (self.width + self.height))
 
     def __str__(self):
-        """ display string representation of objct triangle"""
+        """String representation of the object"""
+        return '\n'.join(['#' * self.__width] * self.__height)
 
-        list_ = []
-        if ((self.width == 0) or (self.height == 0)):
-            list_.append('\0')
-            string = ''.join(str(i) for i in list_)
-            return string
-        for i in range(self.height):
-            list_.append('\n')
-            for j in range(self.width):
-                list_.append('#')
-        string = ''.join(str(i) for i in list_)
-        return string
+    def __repr__(self):
+        """actual object representation """
 
-    def __repr(self):
-        """ display official object represantation """
-
-        return self
+        return f"<{self.__class__.__name__} object at {hex(id(self))}>"
