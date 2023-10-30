@@ -60,6 +60,10 @@ class Rectangle:
         """ display string representation of objct triangle"""
 
         list_ = []
+        if ((self.width == 0) or (self.height == 0)):
+            list_.append('\0')
+            string = ''.join(str(i) for i in list_)
+            return string
         for i in range(self.height):
             list_.append('\n')
             for j in range(self.width):
