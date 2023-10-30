@@ -4,6 +4,11 @@
 
 
 class Rectangle:
+    """ defin rectagle objct nd perform rectangle operations
+        methods:
+            width: setter and getter for the width
+            height: setter and getter for the height
+    """
 
     def __init__(self, width=0, height=0):
         """init method"""
