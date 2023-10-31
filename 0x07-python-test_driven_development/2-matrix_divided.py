@@ -6,12 +6,19 @@
 
 
 def matrix_divided(matrix, div):
+    """ divide elements in a matrix
+        args:
+            matrix:list of lists
+            div: dividor """
+
     if (type(matrix) is not list):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        n = "matrix must be a matrix (list of lists) of integers/floats"
+        raise TypeError(n)
     cpy = []
     for i in range(len(matrix)):
-        if (type(matrix[i]) is not list):
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+        if (isinstance(matrix[i], list) is False):
+            n = "matrix must be a matrix (list of lists) of integers/floats"
+            raise TypeError(n)
         row = []
         for j in range(len(matrix[i])):
             if ((type(matrix[i][j]) is not int) and (type(matrix[i][j]) is not float)):
