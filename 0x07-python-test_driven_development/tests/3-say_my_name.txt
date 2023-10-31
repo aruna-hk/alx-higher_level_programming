@@ -1,0 +1,10 @@
+test module say_my name
+first import module and use the function the module
+
+>>> say_name = __import__('3-say_my_name').say_my_name
+>>> say_name("kiptoo")
+kiptoo
+>>> say_name("kiptooo", "haron")
+kiptoo haron
+>>>say_name(6, "kiptoo)
+:w

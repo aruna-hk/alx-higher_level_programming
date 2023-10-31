@@ -1,0 +1,17 @@
+test case for "matrix_divided function
+
+first import "matrix_divided" from "2-matrix_divided.py"
+
+>>> matrix = __import__("2-matrix_divided").matrix_divided
+>>> x = [2,2,3]
+>>> matrix(x, 9)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+>>> x = [[2,4,6],[8,10,12]]
+>>> matrix(x, 2)
+[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+>>> matrix(x, 0)
+Traceback (most recent call last):
+    ...
+ZerroDevisionError: division by zero
