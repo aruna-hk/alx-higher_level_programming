@@ -19,9 +19,9 @@ class Square:
                 size (int): instatiate private size attribute
         """
         if (type(size) is not int):
-            raise(TypeError("size must be an integer"))
+            raise TypeError("size must be an integer")
         if (size < 0):
-            raise(ValueError("size must be >= 0"))
+            raise ValueError("size must be >= 0")
         self.__size = size
         if (type(position) is not tuple or len(position) != 2):
             raise TypeError("position must be a tuple of 2 positive integers")
@@ -47,15 +47,16 @@ class Square:
                 value: value to set size to
         """
         if (type(value) is not int):
-            raise(TypeError("size must be integer"))
+            raise TypeError("size must be integer")
         if (value < 0):
-            raise(ValueError("size must be >= 0"))
+            raise ValueError("size must be >= 0")
         self.__size = value
 
     def my_print(self):
         """ print square """
         if (self.__size == 0):
             print("")
+        print("")
         for i in range(self.__size):
             for i in range(self.__size):
                 print("#", end='')
@@ -69,5 +70,5 @@ class Square:
     @position.setter
     def position(self, value):
         if (isinstance(value, tuple) is not True):
-            raise(TypeError("position must be a tuple of 2 positive integers"))
+            raise TypeError("position must be a tuple of 2 positive integers")
         self.__position = value
