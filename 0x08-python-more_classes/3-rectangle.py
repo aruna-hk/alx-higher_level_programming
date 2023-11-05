@@ -61,7 +61,6 @@ class Rectangle:
 
         lis = []
         if ((self.width == 0) or (self.height == 0)):
-            lis.append('\0')
             st = ''.join(str(i) for i in lis)
             return st
         return '\n'.join(['#' * self.__width] * self.__height)
