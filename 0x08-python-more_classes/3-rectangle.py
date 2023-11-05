@@ -69,4 +69,4 @@ class Rectangle:
     def __repr__(self):
         """actual object representation """
 
-        return f"<{3}-{self.__class__.__name__} object at {id(self)}>"
+        return f"<{3}-rectangle.{self.__class__.__name__} object"
