@@ -68,5 +68,6 @@ class Rectangle:
     def __repr__(self):
         """actual object representation """
 
-        o = "{}({}, {})".format(self.__class__.__name__, self.__width, self.__height)
-        return o
+        o = "{}".format(self.__class__.__name__)
+        p = "({}, {})".format(self.__width, self.__height)
+        return o + p
