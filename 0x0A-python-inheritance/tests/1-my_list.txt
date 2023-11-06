@@ -1,0 +1,15 @@
+>>> lis = __import__('1-my_list').MyList
+>>> hk = lis()
+>>> hk.append(1)
+>>> print(hk)
+[1]
+>>> len(hk)
+1
+>>> hk.append(23)
+>>> hk.append(9)
+>>> print(hk)
+[1, 23, 9]
+>>> len(hk)
+3
+>>> print(sorted(hk))
+[1, 9, 23]
