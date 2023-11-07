@@ -1,6 +1,8 @@
 #!/usr/bin/python3
-import json
 """ module to convert string into jason object"""
+
+
+import json
 
 
 def to_json_string(my_obj):
@@ -8,4 +10,5 @@ def to_json_string(my_obj):
            my object - python object
            return jason object
     """
+
     return (json.dumps(my_obj))
