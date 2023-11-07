@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+
 import json
+
 """ module to convert python object to json object """
 
 
