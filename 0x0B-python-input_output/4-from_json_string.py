@@ -9,4 +9,8 @@ def from_json_string(my_str):
         my_str(str)
     """
 
-    return json.loads(my_str)
+    try:
+        x = json.loads(my_str)
+        return x
+    except Exception as e:
+        raise ValueError(e)
