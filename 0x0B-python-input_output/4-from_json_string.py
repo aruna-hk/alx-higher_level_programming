@@ -10,4 +10,4 @@ def from_json_string(my_string):
         pobj = json.loads(my_string)
         return pobj
     except Exception as e:
-        raise ValueError(e)
+        raise (e)
