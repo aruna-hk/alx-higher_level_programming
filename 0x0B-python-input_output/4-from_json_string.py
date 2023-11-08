@@ -4,7 +4,10 @@ import json
 
 
 def from_json_string(my_string):
-    """Parse a JSON string and return the corresponding Python object."""
+    """Parse a JSON string and return the corresponding Python object.
+        args:
+            my_string(python bject)
+    """
 
     try:
         pobj = json.loads(my_string)
