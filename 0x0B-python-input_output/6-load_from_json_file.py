@@ -1,7 +1,8 @@
 #!/usr/bin/python3
+""" create jason file """
 import json
 
-""" create jason file """
+
 def load_from_json_file(filename):
     """ create object from jason file"""
 
