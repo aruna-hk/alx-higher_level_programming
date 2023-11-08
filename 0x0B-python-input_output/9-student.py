@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ class student  json representation """
-import json
 
 
 class Student:
@@ -14,7 +13,6 @@ class Student:
         self.age = age
 
     def to_json(self):
-        """ return jason representation of class instance"""
+        """ return oject attributes for json srialization"""
 
-        serializable = __import__('8-class_to_json').class_to_json
-        return serializable(self)
+        return self.__dict__
