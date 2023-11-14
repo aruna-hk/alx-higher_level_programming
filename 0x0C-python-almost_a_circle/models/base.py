@@ -32,13 +32,11 @@ class Base:
     def save_to_file(cls, list_objs):
         """ save python object using JSON """
 
+        lis_t = []
         for i in list_objs:
-            print(i.to_dictionary())
+            lis_t.append(json.dumps(i.to_dictionary()))
         with open(cls.__name__+".json", "w") as file:
-            file.write('[')
-            for i in list_objs:
-                json.dump(i.to_dictionary(), file)
-            file.write(']')
+            json.dump(lis_t, file)
 
     @staticmethod
     def from_json_string(json_string):
