@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """ rectangle class model rectangle  object"""
+from models.base import Base
 
 
-class Rectangle(__import__("base").Base):
+class Rectangle(Base):
     """ class rectagle inherits class BASE"""
 
     def __init__(self, width, height, x=0, y=0, id=None):
@@ -99,7 +100,7 @@ class Rectangle(__import__("base").Base):
     def __str__(self):
         """string representation of rectangle """
 
-        st = "[{}] ({}) ".format(self.__class__name, self.id)
+        st = "[{}] ({}) ".format(self.__class__.__name__, self.id)
         st2 = "{}/{} - {}/{}".format(self.x, self.y, self.width, self.height)
         return st + st2
 

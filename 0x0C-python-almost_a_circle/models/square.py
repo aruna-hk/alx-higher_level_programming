@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """ class rectangle inherit class rectangle whih inherits from class  Base """
+from models.rectangle import Rectangle
 
 
-class Square(__import__("rectangle").Rectangle):
+class Square(Rectangle):
     """ square class model square """
 
     def __init__(self, size, x=0, y=0, id=None):
