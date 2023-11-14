@@ -31,9 +31,7 @@ class Base:
     @classmethod
     def save_to_file(cls, list_objs):
         """ save python object using JSON """
-
-        for i in list_objs:
-            print(i.to_dictionary())
+       
         with open(cls.__name__+".json", "w") as file:
             file.write('[')
             for i in list_objs:
