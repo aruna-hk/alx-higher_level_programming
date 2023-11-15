@@ -1,3 +1,3 @@
-conatin class definition of models
+contain class definition of models
 
-oth rectangle and square
+both rectangle and square
