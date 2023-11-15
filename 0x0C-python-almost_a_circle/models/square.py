@@ -15,7 +15,7 @@ class Square(Rectangle):
         """ string represntation """
 
         st = "[{}] ({}) ".format(self.__class__.__name__, self.id)
-        st2 = "{}/{}".format(self.x, self.y, self.height)
+        st2 = "{}/{} - {}".format(self.x, self.y, self.height)
         return st + st2
 
     @property
