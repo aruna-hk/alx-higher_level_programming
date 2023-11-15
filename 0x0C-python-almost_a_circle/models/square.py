@@ -35,7 +35,7 @@ class Square(Rectangle):
         """update square model """
 
         lis = list(args)
-        if (args is not None and len(l) > 0):
+        if (args is not None and len(lis) > 0):
             try:
                 self.id = lis[0]
                 self.width = lis[1]
