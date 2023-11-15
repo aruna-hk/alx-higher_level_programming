@@ -67,7 +67,13 @@ class Base:
         """ load from json file """
 
         filename = cls.__name__ + ".json"
-        with open(filename, "r") as file:
-            j = file.read()
-            return json.loads(j)
-        return []
+        try:
+            file = open(filename, "r")
+            objlist = []
+            pyobj = Base.from_json_string(file.read())
+            for i in pyobj:
+                objlist.append(cls.create(**i))
+            file.close()
+        except Exception as e:
+            return []
+        return objlist
