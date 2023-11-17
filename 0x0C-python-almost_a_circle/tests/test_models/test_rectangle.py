@@ -149,9 +149,44 @@ class Test_base(unittest.TestCase):
     def test_save_to_file(self):
         """ save object to a file"""
 
+        lis_t = []
         rect = Rectangle(10, 9, 0, 0, 1)
-        dict_rect = rect.to_dictionary()
+        rect2 = Rectangle(2, 9, 2, 3, 9)
+        lis_t.append(rect.to_dictionary())
+        lis_t.append(rect2.to_dictionary())
+        Rectangle.save_to_file([rect, rect2])
+        lis_t2 = []
+        from_file = Rectangle.load_from_file()
+        for i in from_file:
+            lis_t2.append(i.to_dictionary())
+        self.assertEqual(lis_t, lis_t2) 
 
+        Rectangle.save_to_file(None)
+        from_file = Rectangle.load_from_file()
+        self.assertEqual(from_file, [])
+
+        Rectangle.save_to_file([])
+        from_file = Rectangle.load_from_file()
+        self.assertEqual(from_file, [])
+
+    def test_load_from_file(self):
+        """ test loading from a file """
+
+        from_file = Rectangle.load_from_file()
+        self.assertEqual(from_file, []) 
+
+        obj =  Rectangle(10, 9, 3, 2, 90)
+        Rectangle.save_to_file([obj])
+        from_file = Rectangle.load_from_file()
+        lis_t = []
+        lis_t.append(from_file[0].to_dictionary())
+        self.assertEqual(lis_t, [obj.to_dictionary()])
+
+    def test_display(self):
+        """ test displaying square"""
+
+        r2 = Rectangle(3, 2, 1, 0, 45)
+        self.assertEqual(print(" ###\n ###\n ###\n"), r2.display())
 
 if __name__ == "__main__":
     unittest.main()
