@@ -17,13 +17,13 @@ class Test_base(unittest.TestCase):
         self.assertEqual(rect.height, 2)
         self.assertEqual(rect.x, 0)
         self.assertEqual(rect.y, 0)
-        self.assertEqual(rect.id, 4)
+        self.assertEqual(rect.id, 7)
 
     def test_init_w_h_x(self):
         """ test init width height x """
 
         rect1 = Rectangle(1, 2, 3)
-        self.assertEqual(rect1.id, 5)
+        self.assertEqual(rect1.id, 8)
         self.assertEqual(rect1.width, 1)
         self.assertEqual(rect1.height, 2)
         self.assertEqual(rect1.x, 3)
@@ -33,7 +33,7 @@ class Test_base(unittest.TestCase):
         """ test init width height x y"""
 
         rect2 = Rectangle(1, 2, 3, 5)
-        self.assertEqual(rect2.id, 6)
+        self.assertEqual(rect2.id, 9)
         self.assertEqual(rect2.width, 1)
         self.assertEqual(rect2.height, 2)
         self.assertEqual(rect2.x, 3)
