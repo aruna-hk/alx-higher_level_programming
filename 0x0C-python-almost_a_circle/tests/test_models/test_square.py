@@ -16,7 +16,7 @@ class Test_base(unittest.TestCase):
         self.assertEqual(sq.size, 1)
         self.assertEqual(sq.x, 0)
         self.assertEqual(sq.y, 0)
-        self.assertEqual(sq.id, 10)
+        self.assertEqual(sq.id, 13)
 
     def test_init_size_x(self):
         """test instatiation size and x coordinate"""
@@ -25,7 +25,7 @@ class Test_base(unittest.TestCase):
         self.assertEqual(sq.size, 1)
         self.assertEqual(sq.x, 2)
         self.assertEqual(sq.y, 0)
-        self.assertEqual(sq.id, 11)
+        self.assertEqual(sq.id, 14)
 
     def test_init_size_x_y(self):
         """test instatiation size, x,y coordinate"""
@@ -34,7 +34,7 @@ class Test_base(unittest.TestCase):
         self.assertEqual(sq.size, 1)
         self.assertEqual(sq.x, 2)
         self.assertEqual(sq.y, 4)
-        self.assertEqual(sq.id, 12)
+        self.assertEqual(sq.id, 15)
 
     def test_init_size_x_y_id(self):
         """test instatiation size, x, y and id"""
@@ -104,6 +104,42 @@ class Test_base(unittest.TestCase):
         self.assertEqual(sq.x, 2)
         sq.update(**{'id': 89, 'size': 1, 'x': 2, 'y': 3})
         self.assertEqual(sq.y, 3)
+
+    def test_save_to_file(self):
+        """ save object to a file"""
+
+        lis_t = []
+        sq = Square(10, 2, 3, 50)
+        sq2 = Square(2, 9, 2, 9)
+        lis_t.append(sq.to_dictionary())
+        lis_t.append(sq2.to_dictionary())
+        Square.save_to_file([sq, sq2])
+        lis_t2 = []
+        from_file = Square.load_from_file()
+        for i in from_file:
+            lis_t2.append(i.to_dictionary())
+        self.assertEqual(lis_t, lis_t2)
+
+        Square.save_to_file(None)
+        from_file = Square.load_from_file()
+        self.assertEqual(from_file, [])
+
+        Square.save_to_file([])
+        from_file = Square.load_from_file()
+        self.assertEqual(from_file, [])
+
+    def test_load_from_file(self):
+        """ test loading from a file """
+
+        from_file = Square.load_from_file()
+        self.assertEqual(from_file, [])
+
+        obj = Square(10, 9, 3, 90)
+        Square.save_to_file([obj])
+        from_file = Square.load_from_file()
+        lis_t = []
+        lis_t.append(from_file[0].to_dictionary())
+        self.assertEqual(lis_t, [obj.to_dictionary()])
 
 
 if __name__ == "__main__":
