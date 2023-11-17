@@ -2,6 +2,7 @@
 
 """ base class of all classes/object in this package """
 import json
+import csv
 
 
 class Base:
@@ -32,7 +33,7 @@ class Base:
     def save_to_file(cls, list_objs):
         """ save python object using JSON """
 
-        with open(cls.__name__+".json", "w") as file:
+        with open(cls.__name__ + ".json", "w") as file:
             if list_objs is None or len(list_objs) == 0:
                 file.write("[]")
             else:
@@ -77,3 +78,40 @@ class Base:
         except Exception as e:
             return []
         return objlist
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ save python object using csv """
+
+        with open(cls.__name__ + ".csv", "w") as file:
+            if cls.__name__ == "Rectangle":
+                header = ["id", "width", "height", "x", "y"]
+            else:
+                header = ["id", "size", "x", "y"]
+            lis_t = []
+            for i in list_objs:
+                lis_t.append(i.to_dictionary())
+            info = csv.DictWriter(file, fieldnames=header)
+            info.writeheader()
+            info.writerows(lis_t)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ Load from a CSV file and create objects """
+
+        filename = cls.__name__ + ".csv"
+        try:
+            objlist = []
+            file = open(filename, "r")
+            pyobj = csv.DictReader(file)
+            for i in pyobj:
+                objlist.append(dict(i))
+            ob = []
+            for i in range(len(objlist)):
+                for k, v in objlist[i].items():
+                    objlist[i][k] = int(v)
+            for i in objlist:
+                ob.append(cls.create(**i))
+            return ob
+        except Exception as e:
+            return []
