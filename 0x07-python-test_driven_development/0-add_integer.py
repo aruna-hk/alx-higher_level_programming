@@ -1,20 +1,21 @@
-#!/usr/bin/python3
+#!/bin/python3
 
-""" add two intergers and return sum
 
-    methods:
-        add_integer: takes two numbers and return sum
+""" this module contain function to add two
+    integers tgeher and return integer
 """
+
+# function to perfome addition
 
 
 def add_integer(a, b=98):
 
-    """ adds two numbers
-        a(int): integer argument
-        b(int): integer argument  """
+    """ add_integer function performs addition of whole integers
+        and return int of a and b"""
 
-    if ((isinstance(a, int) is False) and (isinstance(a, float) is False)):
-        raise (TypeError("a must be an integer"))
-    if ((isinstance(b, int) is False) and (isinstance(b, float) is False)):
-        raise (TypeError("b must be an integer"))
-    return int(a + b)
+    err_str = "{} must be an integer"
+    if type(a) is chr or type(a) is str:
+        raise TypeError(err_str.format("a"))
+    if type(b) is chr or type(b) is str:
+        raise TypeError(err_str.format("b"))
+    return int(a) + int(b)

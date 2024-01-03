@@ -1,26 +1,29 @@
-test file for "add_integer" fuction
-============================
-first import"0-add_integer" module to gain access to add_integer
+#!/bin/python3
 
->>> import doctest
->>> add = __import__('0-add_integer').add_integer
->>> add(1,2)
-3
->>> add("str", 2)
+""" testing add function
+>>> add = __import__("0-add_integer").add_integer
+
+>>> add(4, 4)
+8
+>>> add(4)
+102
+>>> add("4")
 Traceback (most recent call last):
     ...
 TypeError: a must be an integer
->>> add(2, "str")
+>>> add(10, "str")
 Traceback (most recent call last):
     ...
 TypeError: b must be an integer
->>> add("str", "str")
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
->>> add(8)
-106
->>> add(str)
-Traceback (most recent call last):
-    ...
-TypeError: a must be an integer
+
+when one is float a
+>>> add(2.6)
+100
+
+>>> add(10, 2.6)
+12
+
+"""
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)
