@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-""" class rectangle doe nothing """
+""" this module contain temple class to create rectangle """
 
 
 class Rectangle:
-    "class rectagle does nothing"""
+    """"class rectagle - create a rectangle object
+    abstract class """
     pass
