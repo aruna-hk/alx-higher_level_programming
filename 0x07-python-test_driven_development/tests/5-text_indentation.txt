@@ -1,0 +1,25 @@
+#!/usr/bin/python3
+
+""" text indentation testing
+
+>>> indent = __import__('5-text_indentation').text_indentation
+>>> indent("k?p:o.o.")
+k?
+<BLANKLINE>
+p:
+<BLANKLINE>
+o.
+<BLANKLINE>
+o.
+<BLANKLINE>
+
+>>> indent(9)
+Traceback (most recent call last):
+    ...
+TypeError: text must be a string
+
+"""
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

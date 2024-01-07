@@ -1,0 +1,25 @@
+#!/usr/bin/python3
+
+""" test print square function
+
+>>> sq = __import__('4-print_square').print_square
+>>> sq(1)
+#
+>>> sq(2)
+##
+##
+>>> sq(0)
+<BLANKLINE>
+>>> sq(-1)
+Traceback (most recent call last):
+    ...
+ValueError: size must be >= 0
+>>> sq(9.7)
+Traceback (most recent call last):
+    ...
+TypeError: size must be an integer
+
+"""
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

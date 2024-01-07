@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+
+""" this module test say_my_name function
+
+>>> say_me = __import__('3-say_my_name').say_my_name
+>>> say_me("kiptoo", "haron")
+My name is kiptoo haron
+>>> say_me("hk")
+My name is hk 
+>>> say_me(1)
+Traceback (most recent call last):
+    ...
+TypeError: first_name must be a string
+>>> say_me("kiptoo", 5)
+Traceback (most recent call last):
+    ...
+TypeError: last_name must be a string
+
+"""
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()

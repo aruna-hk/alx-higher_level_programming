@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 """ testing add function
 >>> add = __import__("0-add_integer").add_integer
