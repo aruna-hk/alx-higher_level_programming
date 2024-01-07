@@ -23,6 +23,11 @@ when one is float a
 >>> add(10, 2.6)
 12
 
+>>> add(10, None)
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+
 """
 if __name__ == "__main__":
     import doctest
