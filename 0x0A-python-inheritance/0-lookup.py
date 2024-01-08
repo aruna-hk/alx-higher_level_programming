@@ -6,4 +6,4 @@
 def lookup(obj):
     """ return list of class attributes"""
 
-    return list(dir(obj))
+    return list(obj.__dict__)
