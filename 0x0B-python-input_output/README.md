@@ -17,4 +17,5 @@ readlines() - readline and store in array
 write() - write to a file
 
 
+json serialization/dese...
 <author><kiptooharon.hk@gmail.com>
