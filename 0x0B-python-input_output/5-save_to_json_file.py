@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" dups json object to a file """
+""" save json object to a file """
 import json
 
 
