@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" class student  json representation """
+""" this module contains class student and to-json function
+    that return dict representation of obj
+"""
 
 
 class Student:
