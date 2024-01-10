@@ -1,11 +1,8 @@
 #!/usr/bin/python3
-""" return serializable object fr json serialization"""
+""" return object __dict__ for serialization """
 
 
 def class_to_json(obj):
-    """ return oject attributes for json srialization"""
+    """ return obj.__dict """
 
-    if isinstance(obj, (int, str, bool, list, dict)):
-        return obj
-    else:
-        return class_to_json(obj.__dict__)
+    return obj.__dict__
