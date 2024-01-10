@@ -1,28 +1,34 @@
 #!/usr/bin/python3
-
-""" class student  json representation """
+""" this module contains class student and to-json function
+    that return dict representation of obj
+"""
 
 
 class Student:
-    """ class student attributes: firstname, lastname, to_json"""
+    """ class student attr firstname, lastname, age, to_json"""
 
     def __init__(self, first_name, last_name, age):
-        """ initialize name and age on instatition"""
+        """ return jason representation of class instance"""
 
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """ return jason representation of class instance"""
+        """ return oject attributes for json srialization"""
 
-        if attrs is None:
+        if attrs is None or type(attrs) is not list:
             return self.__dict__
-        return {k: v for k, v in self.__dict__.items() if k in attrs}
+        else:
+            new_dict = {}
+            for key in attrs:
+                if key in self.__dict__.keys():
+                    new_dict[key] = self.__dict__[key]
+            return new_dict
 
     def reload_from_json(self, json):
-        """ reload obect attributes from json file """
+        """ update values of instance variables"""
 
-        for i in json.keys():
-            if i in self.__dict__.keys():
-                self.__dict__[i] = json[i]
+        for key in json.keys():
+            if key in self.__dict__.keys():
+                self.__dict__[key] = json[key]
