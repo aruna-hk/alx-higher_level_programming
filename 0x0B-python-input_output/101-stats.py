@@ -19,7 +19,8 @@ while (1):
             for key, value in info_dict.items():
                 print("{}: {}".format(key, value))
         count += 1
-    except KeyboardInterrupt as k:
+    except KeyboardInterrupt:
         info_dict = dict(sorted(info_dict.items()))
+        print("File size: {}".format(file_size))
         for key, value in info_dict.items():
             print("{}: {}".format(key, value))
