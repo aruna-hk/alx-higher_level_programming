@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-
-""" this is a log parser module pass stdout 
+""" this is a log parser module pass stdout
     extracts exit status codes
 """
 
@@ -30,6 +29,9 @@ def log_parse():
             print("File size: {}".format(file_size))
             for key, value in info_dict.items():
                 print("{}: {}".format(key, value))
+        except EOFError:
+            break
+
 
 if __name__ == "__main__":
     """ execute if file executeed """
