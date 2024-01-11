@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-""" read stdin and compute file metrics"""
+
+""" this is a log parser module pass stdout 
+    extracts exit status codes
+ """
 
 
 file_size = 0
