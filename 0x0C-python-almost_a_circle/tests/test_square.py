@@ -1,109 +1,103 @@
 #!/usr/bin/python3
-""" class sqangle test case """
+""" test module for class square """
 import unittest
+import json
 from models.base import Base
+from models.rectangle import Rectangle
 from models.square import Square
 
 
-class Test_base(unittest.TestCase):
-    """ test base class """
+class TestRect(unittest.TestCase):
+    """ testrect cals test square class """
 
-    def test_init_size(self):
-        """test instatiation size only """
+    def setUp(self):
+        """ object creation """
 
-        """ size  only  """
-        sq = Square(1)
-        self.assertEqual(sq.size, 1)
-        self.assertEqual(sq.x, 0)
-        self.assertEqual(sq.y, 0)
-        self.assertEqual(sq.id, 10)
+        self.square = Square(3, x=0, y=0, id=None)
 
-    def test_init_size_x(self):
-        """test instatiation size and x coordinate"""
+    def test_dimension(self):
+        """ check square dimensions """
 
-        sq = Square(1, 2)
-        self.assertEqual(sq.size, 1)
-        self.assertEqual(sq.x, 2)
-        self.assertEqual(sq.y, 0)
-        self.assertEqual(sq.id, 11)
+        self.assertEqual(self.square.size, 3)
 
-    def test_init_size_x_y(self):
-        """test instatiation size, x,y coordinate"""
+    def test_pos(self):
+        """ test square position """
 
-        sq = Square(1, 2, 4)
-        self.assertEqual(sq.size, 1)
-        self.assertEqual(sq.x, 2)
-        self.assertEqual(sq.y, 4)
-        self.assertEqual(sq.id, 12)
+        self.assertEqual(self.square.x, 0)
+        self.assertEqual(self.square.y, 0)
 
-    def test_init_size_x_y_id(self):
-        """test instatiation size, x, y and id"""
-
-        sq = Square(1, 2, 4, 99)
-        self.assertEqual(sq.size, 1)
-        self.assertEqual(sq.x, 2)
-        self.assertEqual(sq.y, 4)
-        self.assertEqual(sq.id, 99)
-
-    def test_validate_init(self):
-        """test instatiation of invalid types -- setters test """
+    def test_invalid_type(self):
+        """ test initialization with invalid types """
 
         with self.assertRaises(TypeError):
-            sq = Square("1")
-        with self.assertRaises(TypeError):
-            sq = Square(1, "2")
-        with self.assertRaises(TypeError):
-            sq3 = Square(1, 2, "4")
-        with self.assertRaises(ValueError):
-            sq3 = Square(-1)
-        with self.assertRaises(ValueError):
-            sq3 = Square(2, -5)
-        with self.assertRaises(ValueError):
-            sq3 = Square(2, 4, -5)
-        with self.assertRaises(ValueError):
-            sq3 = Square(0)
+            self.square.x = "string"
 
-    def test_str_(self):
-        """ test print of object """
+        with self.assertRaises(TypeError):
+            self.square.y = "string"
 
-        sq = Square(3, 1, 3, 8)
-        x = sq.__str__()
-        self.assertEqual(x, "[Square] (8) 1/3 - 3")
+        with self.assertRaises(TypeError):
+            self.square.width = "string"
+
+        with self.assertRaises(TypeError):
+            self.square.height = "string"
+
+        with self.assertRaises(ValueError):
+            self.square.x = -1
+
+        with self.assertRaises(ValueError):
+            self.square.y = -3
+
+        with self.assertRaises(ValueError):
+            self.square.width = 0
+
+        with self.assertRaises(ValueError):
+            self.square.height = -10
+
+    def test_areamethod(self):
+        """ test the area method in square """
+
+        self.assertEqual(self.square.area(), 9)
+
+    def test_update(self):
+        """ test update method """
+
+        self.square.update(89, 8, 2, 3)
+        self.assertEqual(self.square.size, 8)
+        self.assertEqual(self.square.id, 89)
+
+    def test_updatekwags(self):
+        """ update key worded arguments """
+
+        self.square.update(y=3, size=5, x=4, id=90)
+        self.assertEqual(self.square.size, 5)
+        self.assertEqual(self.square.y, 3)
+        self.assertEqual(self.square.id, 90)
 
     def test_to_dictionary(self):
-        """ store object attributes in dictionary"""
+        """ test to dictionary method """
 
-        sq = Square(3, 1, 3, 89)
-        sq_dic = {'id': 89, 'size': 3, 'x': 1, 'y': 3}
-        dic = sq.to_dictionary()
-        self.assertIsInstance(dic, dict)
-        self.assertEqual(dic, sq_dic)
+        self.square.update(90, 5, 3, 4)
+        dic = {'x': 3, 'y': 4, 'id': 90, 'size': 5}
+        dic2 = self.square.to_dictionary()
+        self.assertIsInstance(dic2, dict)
+        self.assertEqual(dic2, dic)
 
-    def test_update_ags(self):
-        """ test updating with variable args"""
+    def test_to_json(self):
+        """ test conversion from pyobj to json obj """
 
-        sq = Square(10, 9, 0, 1)
-        sq.update(89)
-        self.assertEqual(sq.id, 89)
-        sq.update(89, 12)
-        self.assertEqual(sq.size, 12)
-        sq.update(89, 12, 10)
-        self.assertEqual(sq.x, 10)
-        sq.update(89, 12, 10, 9)
-        self.assertEqual(sq.y, 9)
+        json_str = "[{\"x\": 3, \"width\": 89, \
+        \"id\": 1, \"height\": 2, \"y\": 4}]"
+        obj_json = Base.to_json_string([self.square.to_dictionary()])
 
-    def test_kwargs(self):
-        """ test for key worded update"""
+    def test_save_to_file_read_from_file(self):
+        """save object to a file inform of json object """
 
-        sq = Square(5, 3, 2, 22)
-        sq.update(**{'id': 99})
-        self.assertEqual(sq.id, 99)
-        sq.update(**{'id': 99, 'size': 1})
-        self.assertEqual(sq.size, 1)
-        sq.update(**{'id': 99, 'size': 1, 'x': 2})
-        self.assertEqual(sq.x, 2)
-        sq.update(**{'id': 89, 'size': 1, 'x': 2, 'y': 3})
-        self.assertEqual(sq.y, 3)
+        jstr = Base.to_json_string([self.square.to_dictionary()])
+        with open(self.square.__class__.__name__ + ".json", "w") as file:
+            json.dump(jstr, file)
+        with open(self.square.__class__.__name__ + ".json", "r") as file2:
+            jobj = json.load(file2)
+        self.assertEqual(jobj, jstr)
 
 
 if __name__ == "__main__":

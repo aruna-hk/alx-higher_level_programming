@@ -1,156 +1,105 @@
 #!/usr/bin/python3
-""" class rectangle test case """
+""" test module for class rectangle """
 import unittest
+import json
 from models.base import Base
 from models.rectangle import Rectangle
 
 
-class Test_base(unittest.TestCase):
-    """ test base class """
+class TestRect(unittest.TestCase):
+    """ testrect cals test rectangle class """
 
-    def test_init_value(self):
-        """test instatiation """
+    def setUp(self):
+        """ object creation """
 
-        """ init width height """
-        rect = Rectangle(1, 2)
-        self.assertEqual(rect.width, 1)
-        self.assertEqual(rect.height, 2)
-        self.assertEqual(rect.x, 0)
-        self.assertEqual(rect.y, 0)
-        self.assertEqual(rect.id, 7)
+        self.rectangle = Rectangle(3, 4)
 
-    def test_init_w_h_x(self):
-        """ test init width height x """
+    def test_dimension(self):
+        """ check rectangle dimensions """
 
-        rect1 = Rectangle(1, 2, 3)
-        self.assertEqual(rect1.id, 8)
-        self.assertEqual(rect1.width, 1)
-        self.assertEqual(rect1.height, 2)
-        self.assertEqual(rect1.x, 3)
-        self.assertEqual(rect1.y, 0)
+        self.assertEqual(self.rectangle.width, 3)
+        self.assertEqual(self.rectangle.height, 4)
 
-    def test_init_w_h_x_y(self):
-        """ test init width height x y"""
+    def test_pos(self):
+        """ test rectangle position """
 
-        rect2 = Rectangle(1, 2, 3, 5)
-        self.assertEqual(rect2.id, 9)
-        self.assertEqual(rect2.width, 1)
-        self.assertEqual(rect2.height, 2)
-        self.assertEqual(rect2.x, 3)
-        self.assertEqual(rect2.y, 5)
+        self.assertEqual(self.rectangle.x, 0)
+        self.assertEqual(self.rectangle.y, 0)
 
-    def test_init_w_h_x_y_id(self):
-        """ all attributes initialized """
-
-        rect2 = Rectangle(1, 2, 3, 5, 98)
-        self.assertEqual(rect2.id, 98)
-        self.assertEqual(rect2.width, 1)
-        self.assertEqual(rect2.height, 2)
-        self.assertEqual(rect2.x, 3)
-        self.assertEqual(rect2.y, 5)
-
-    def test_validate_init(self):
-        """test instatiation """
+    def test_invalid_type(self):
+        """ test initialization with invalid types """
 
         with self.assertRaises(TypeError):
-            rect3 = Rectangle("1", 2)
+            self.rectangle.x = "string"
+
         with self.assertRaises(TypeError):
-            rect3 = Rectangle(1, "2")
+            self.rectangle.y = "string"
+
         with self.assertRaises(TypeError):
-            rect3 = Rectangle(1, 2, "4")
+            self.rectangle.width = "string"
+
         with self.assertRaises(TypeError):
-            rect3 = Rectangle(1, 2, 4, "str")
+            self.rectangle.height = "string"
+
         with self.assertRaises(ValueError):
-            rect3 = Rectangle(-1, 5)
+            self.rectangle.x = -1
+
         with self.assertRaises(ValueError):
-            rect3 = Rectangle(-1, 5)
+            self.rectangle.y = -3
+
         with self.assertRaises(ValueError):
-            rect3 = Rectangle(1, -5)
+            self.rectangle.width = 0
+
         with self.assertRaises(ValueError):
-            rect3 = Rectangle(0, 5)
-        with self.assertRaises(ValueError):
-            rect3 = Rectangle(1, 0)
-        with self.assertRaises(ValueError):
-            rect3 = Rectangle(1, 3, 4, -8)
+            self.rectangle.height = -10
 
-    def test_area(self):
-        """test computation of area of rectangle"""
+    def test_areamethod(self):
+        """ test the area method in rectangle """
 
-        rect = Rectangle(10, 9, 0, 0, 100)
-        area = rect.area()
-        self.assertEqual(area, 90)
+        self.assertEqual(self.rectangle.area(), 12)
 
-    def test_str_(self):
-        """ test print of object """
+    def test_update(self):
+        """ test update method """
 
-        rect = Rectangle(10, 9, 0, 0, 101)
+        self.rectangle.update(1, 89, 2)
+        self.assertEqual(self.rectangle.width, 89)
+        self.assertEqual(self.rectangle.height, 2)
+        self.rectangle.update(1, 89, 2, 3, 4)
+        self.assertEqual(self.rectangle.y, 4)
 
-        x = rect.__str__()
-        self.assertEqual(x, "[Rectangle] (101) 0/0 - 10/9")
+    def test_updatekwags(self):
+        """ update key worded arguments """
 
-    def test_update_ags(self):
-        """ test updating with variable args"""
-
-        rect = Rectangle(10, 9, 0, 0, 1)
-        rect.update(89)
-        self.assertEqual(rect.id, 89)
-        rect.update(89, 12)
-        self.assertEqual(rect.width, 12)
-        rect.update(89, 12, 10)
-        self.assertEqual(rect.height, 10)
-        rect.update(89, 12, 10, 2)
-        self.assertEqual(rect.x, 2)
-        rect.update(89, 12, 10, 2, 4)
-        self.assertEqual(rect.y, 4)
-
-    def test_kwargs(self):
-        """ test for key worded update"""
-
-        rect = Rectangle(10, 9, 0, 0, 1)
-        rect.update(**{'id': 89})
-        self.assertEqual(rect.id, 89)
-        rect.update(**{'id': 89, 'width': 1})
-        self.assertEqual(rect.width, 1)
-        rect.update(**{'id': 89, 'width': 1, 'height': 2})
-        self.assertEqual(rect.height, 2)
-        rect.update(**{'id': 89, 'width': 1, 'height': 2, 'x': 3})
-        self.assertEqual(rect.x, 3)
-        rect.update(**{'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4})
-        self.assertEqual(rect.y, 4)
+        self.rectangle.update(y=3, width=5, x=4, id=89)
+        self.assertEqual(self.rectangle.width, 5)
+        self.assertEqual(self.rectangle.y, 3)
+        self.assertEqual(self.rectangle.id, 89)
 
     def test_to_dictionary(self):
-        """ store object attributes in dictionary"""
+        """ test to dictionary method """
 
-        rect = Rectangle(10, 9, 0, 0, 1)
+        self.rectangle.update(id=89, width=2, height=4, x=5, y=6)
+        dic = {'x': 5, 'y': 6, 'id': 89, 'height': 4, 'width': 2}
+        dic2 = self.rectangle.to_dictionary()
+        self.assertIsInstance(dic2, dict)
+        self.assertEqual(dic2, dic)
 
-        res_dic = {'id': 1, 'width': 10, 'height': 9, 'x': 0, 'y': 0}
-        dic = rect.to_dictionary()
-        self.assertIsInstance(dic, dict)
-        self.assertEqual(dic, res_dic)
+    def best_to_json(self):
+        """ test conversion from pyobj to json obj """
 
-    def test_create(self):
-        """test creation of object """
+        json_str = "[{\"x\": 3, \"width\": 89, \
+        \"id\": 1, \"height\": 2, \"y\": 4}]"
+        obj_json = Base.to_json_string([self.rectangle.to_dictionary()])
 
-        rect_dict = {'id': 89, 'width': 10, 'height': 4}
-        rect_obj = Rectangle.create(**rect_dict)
-        self.assertIsInstance(rect_obj, Rectangle)
-        self.assertEqual(rect_obj.id, 89)
+    def test_save_to_file_read_from_file(self):
+        """save object to a file inform of json object """
 
-        rect_dict = {'id': 89, 'width': 1, 'height': 2, 'x': 3}
-        rect_obj = Rectangle.create(**rect_dict)
-        self.assertIsInstance(rect_obj, Rectangle)
-        self.assertEqual(rect_obj.width, 1)
-
-        rect_dict = {'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4}
-        rect_obj = Rectangle.create(**rect_dict)
-        self.assertIsInstance(rect_obj, Rectangle)
-        self.assertEqual(rect_obj.height, 2)
-
-    def test_save_to_file(self):
-        """ save object to a file"""
-
-        rect = Rectangle(10, 9, 0, 0, 1)
-        dict_rect = rect.to_dictionary()
+        jstr = Base.to_json_string([self.rectangle.to_dictionary()])
+        with open(self.rectangle.__class__.__name__ + ".json", "w") as file:
+            json.dump(jstr, file)
+        with open(self.rectangle.__class__.__name__ + ".json", "r") as file2:
+            jobj = json.load(file2)
+        self.assertEqual(jobj, jstr)
 
 
 if __name__ == "__main__":
