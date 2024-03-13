@@ -1,6 +1,4 @@
 #!/usr/bin/node
-/**
- * variable assignemn and use
-*/
+// introduction to javascript
 const myVar =  "JavaScript is amazing";
 console.log(myVar);
