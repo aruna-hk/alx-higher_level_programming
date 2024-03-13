@@ -1,9 +1,9 @@
 #!/usr/bin/node
 //command line argument
 let count = 0;
-for (arg in process.argv) {
+for (const arg of process.argv) {
   if (count === 2) {
-    console.log(process.argv[arg]);
+    console.log(arg);
     count++;
     break;
   }
