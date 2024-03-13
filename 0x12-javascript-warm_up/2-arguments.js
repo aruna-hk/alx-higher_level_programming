@@ -1,14 +1,8 @@
 #!/usr/bin/node
-
-/*
-* command line arguments
-*/
-len = process.argv.length
-if (len == 2)
-{
-	console.log("No argument")
+//command line arguments
+if ( ( process.argv.length ) > 2 ) {
+  console.log('Arguments found')
 }
-else
-{
-	console.log("Arguments found")
+else {
+  console.log('No arguments')
 }
