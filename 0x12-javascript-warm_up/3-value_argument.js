@@ -1,8 +1,14 @@
 #!/usr/bin/node
-//command line arguments
-if ((process.argv.length) > 2 ) {
-  console.log(process.argv[2])
+//command line argument
+let count = 0;
+for (arg in process.argv) {
+  if (count === 2) {
+    console.log(process.argv[arg]);
+    count++;
+    break;
+  }
+  count++;
 }
-else {
-  console.log('No argument')
+if (count === 2) {
+  console.log('No argument');
 }
