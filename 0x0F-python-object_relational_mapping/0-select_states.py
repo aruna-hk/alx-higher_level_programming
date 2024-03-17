@@ -14,7 +14,7 @@ connectioninfo = {
     "password": argv[2],
     "db": argv[3]
 }
-query = "select * from states"
+query = "select * from states order by id ASC"
 connection = MySQLdb.connect(**connectioninfo)
 connection.query(query)
 result = connection.store_result()
