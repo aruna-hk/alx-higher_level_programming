@@ -15,9 +15,11 @@ def select_all_limit():
     engine = sqlalchemy.create_engine(con)
     session = sqlalchemy.orm.sessionmaker(bind=engine)
     Session = session()
-    states = Session.query(State).order_by(State.id).limit(1)
-    for state in states:
-        print("{}: {}".format(state.id, state.name))
+    states = Session.query(State).first()
+    if (states is None):
+        print("Nothing")
+    else:
+        print("{}: {}".format(states.id, states.name))
     Session.close()
 
 
