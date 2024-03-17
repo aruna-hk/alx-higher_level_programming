@@ -15,21 +15,16 @@ def select_join():
         "password": argv[2],
         "db": argv[3]
     }
-    query = """select cities.name from cities inner join states
-        where states.name = "{}"
-        """.format(argv[4])
     db = MySQLdb.connect(**logininfo)
-    db.query(query)
-    result = db.store_result()
-    fetch = result.fetch_row(maxrows=0)
-    lenn = len(fetch)
-    i = 0
-    for value in fetch:
-        print(value[0], end='')
-        if (i < lenn - 1):
-            print(", ", end='')
-        i = i + 1
-    print()
+    cursor = db.cursor()
+    cursor.execute("""SELECT cities.name FROM
+                cities INNER JOIN states ON states.id=cities.state_id
+                WHERE states.name=%s""", (argv[4],))
+    rows = cursor.fetchall()
+    objs = list(row[0] for row in rows)
+    print(*objs, sep=", ")
+    cursor.close()
+    db.close()
 
 
 if __name__ == "__main__":
