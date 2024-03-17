@@ -13,13 +13,12 @@ def select_all_limit():
     """ function to select all data from database """
 
     con = "mysql://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3])
+    engine = sqlalchemy.create_engine(con)
     Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
+    Session = sqlalchemy.orm.sessionmaker(bind=engine)
     session = Session()
-    new_state = State(name='Louisiana')
-    session.add(new_state)
-    new = session.query(State).filter_by(name='Louisiana').first()
-    print(new.id)
+    obj = session.query(State).filter(State.id == 2).first()
+    obj.name = "New Mexico"
     session.commit()
 
 
