@@ -10,7 +10,6 @@ def filter():
     """ filtering output select * from where(filter patter) """
 
     logininfo = {
-        "host": "localhost",
         "user": sys.argv[1],
         "password": sys.argv[2],
         "database": sys.argv[3]
