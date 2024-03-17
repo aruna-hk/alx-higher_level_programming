@@ -2,24 +2,19 @@
 """ this module queries database via sql alchemy
     select data from table
 """
-
-from model_state import Base, State
 from sys import argv
-import sqlalchemy
-
-
-def select_all_limit():
-    """ function to select all data from database """
-
-    con = "mysql://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3])
-    engine = sqlalchemy.create_engine(con)
-    Base.metadata.create_all(engine)
-    session = sqlalchemy.orm.sessionmaker(bind=engine)
-    Session = session()
-    for instance in Session.query(State).filter(State.name.like('%a%')):
-        Session.delete(instance)
-    Session.close()
+from model_state import Base, State
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 
 if __name__ == "__main__":
-    select_all_limit()
+    con = 'mysql://{}:{}@localhost:3306/{}'.format(argv[1], argv[2], argv[3])
+    engine = create_engine(con)
+    Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    objs = session.query(State).filter(State.name.like('%a%'))
+    for instance in objs:
+        session.delete(instance)
+    session.commit()
