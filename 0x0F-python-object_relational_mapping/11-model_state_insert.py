@@ -19,6 +19,7 @@ def select_all_limit():
     new = State(name="louisiana")
     Session.add(new)
     obj = Session.query(State).filter(State.name == "louisiana").first()
+    Session.commit()
     print(obj.id)
     Session.close()
 
