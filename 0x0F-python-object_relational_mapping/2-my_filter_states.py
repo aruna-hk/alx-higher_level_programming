@@ -15,7 +15,7 @@ def select_specific():
         "database": argv[3]
     }
     db = MySQLdb.connect(**logininfo)
-    strt = "select * from states where name = '{}' order by id".format(argv[4])
+    strt = "SELECT * FROM states WHERE name LIKE BINARY '{}'".format(argv[4])
     db.query(strt)
     results = db.store_result()
     r = results.fetch_row(maxrows=0)
