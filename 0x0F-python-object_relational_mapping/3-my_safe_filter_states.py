@@ -12,7 +12,6 @@ def select_specific():
     pattern = r'[^a-zA-Z0-9_]'
     clean = re.sub(pattern, ' ', argv[4])
     state = clean.split(' ')[0]
-    print(state)
     logininfo = {
         "host": "localhost",
         "user": argv[1],
