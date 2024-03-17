@@ -9,11 +9,16 @@ import MySQLdb
 from sys import argv
 
 
-def select(**kwargs):
+def select():
     """ connects to database and execute select from table """
 
+    connectioninfo = {
+        "user": argv[1],
+        "password": argv[2],
+        "db": argv[3]
+    }
     query = "select * from states order by id ASC"
-    connection = MySQLdb.connect(**kwargs)
+    connection = MySQLdb.connect(**connectioninfo)
     connection.query(query)
     result = connection.store_result()
     selected = result.fetch_row(maxrows=0)
@@ -23,11 +28,4 @@ def select(**kwargs):
 
 
 if __name__ == '__main__':
-
-    connectioninfo = {
-        "user": argv[1],
-        "password": argv[2],
-        "db": argv[3]
-    }
- 
-    select(**connectioninfo)
+    select()
