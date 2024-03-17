@@ -13,13 +13,15 @@ def filter():
         "password": argv[2],
         "database": argv[3]
     }
-    pattern = '^N'
     db = MySQLdb.connect(**logininfo)
-    db.query("SELECT * FROM states WHERE name REGEXP '%s'" % pattern)
-    results = db.store_result()
-    filtered = results.fetch_row(maxrows=0)
-    for value in filtered:
-        print(value)
+    db.query("""SELECT * FROM states WHERE name
+                LIKE BINARY 'N%' ORDER BY states.id""")
+    output = db.store_result()
+    rows = output.fetch_row(maxrows=0)
+    for row in rows:
+        print(row)
     db.close()
+
+
 if __name__ == "__main__":
     filter()
