@@ -2,7 +2,7 @@
 """ login to database and select data """
 
 import sys
-from MySQLdb import _mysql
+import MySQLdb
 from MySQLdb.constants import FIELD_TYPE
 
 
@@ -16,7 +16,7 @@ def filter():
         "database": sys.argv[3]
     }
     pattern = '^N'
-    db = _mysql.connect(**logininfo)
+    db = MySQLdb.connect(**logininfo)
     db.query("SELECT * FROM states WHERE name REGEXP '%s'" % pattern)
     results = db.store_result()
     filtered = results.fetch_row(maxrows=0)
