@@ -6,7 +6,6 @@
 from model_state import Base, State
 from sys import argv
 import sqlalchemy
-from sqlalchemy import insert
 
 
 def select_all_limit():
@@ -14,13 +13,12 @@ def select_all_limit():
 
     con = "mysql://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3])
     engine = sqlalchemy.create_engine(con)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    new_state = State(name='Louisiana')
-    session.add(new_state)
-    new = session.query(State).filter_by(name='Louisiana').first()
-    print(new.id)
-    session.commit()
+    Base.metadata.create_all(engine)
+    session = sqlalchemy.orm.sessionmaker(bind=engine)
+    Session = session()
+    for instance in Session.query(State).filter(State.name.like('%a%')):
+        Session.delete(instance)
+    Session.close()
 
 
 if __name__ == "__main__":
