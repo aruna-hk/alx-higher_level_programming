@@ -5,22 +5,23 @@ from sys import argv
 import MySQLdb
 
 
-def filter():
-    """ filtering output select * from where(filter patter) """
+def select_specific():
+    """ select specific state """
 
     logininfo = {
+        "host": "localhost",
         "user": argv[1],
         "password": argv[2],
         "database": argv[3]
     }
-    pattern = '^N'
     db = MySQLdb.connect(**logininfo)
-    db.query("SELECT * FROM states WHERE name REGEXP '%s'" % pattern)
+    strt = "select * from states where name = '{}' order by id".format(argv[4])
+    db.query(strt)
     results = db.store_result()
-    filtered = results.fetch_row(maxrows=0)
-    for value in filtered:
+    r = results.fetch_row(maxrows=0)
+    for value in r:
         print(value)
 
 
 if __name__ == "__main__":
-    filter()
+    select_specific()
