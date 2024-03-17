@@ -15,8 +15,11 @@ def select_all_limit():
     engine = sqlalchemy.create_engine(con)
     session = sqlalchemy.orm.sessionmaker(bind=engine)
     Session = session()
-    for instance in Session.query(State).filter(State.name.like('%a%')):
-        print(instance.id, instance.name, sep=": ")
+    obj = Session.query(State).filter(State.name == argv[4]).first()
+    if (obj is None):
+        print("Not found")
+    else:
+        print(obj.id)
     Session.close()
 
 
