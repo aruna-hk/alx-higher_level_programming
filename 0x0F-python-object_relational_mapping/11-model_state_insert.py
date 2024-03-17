@@ -14,12 +14,13 @@ def select_all_limit():
 
     con = "mysql://{}:{}@localhost/{}".format(argv[1], argv[2], argv[3])
     engine = sqlalchemy.create_engine(con)
-    Session = sessionmaker(bind=engine)
+    Base.metadata.create_all(engine)
+    Session = sqlalchemy.orm.sessionmaker(bind=engine)
     session = Session()
     new_state = State(name='Louisiana')
     session.add(new_state)
-    new = session.query(State).filter_by(name='Louisiana').first()
-    print(new.id)
+    new_instance = session.query(State).filter_by(name='Louisiana').first()
+    print(new_instance.id)
     session.commit()
 
 
