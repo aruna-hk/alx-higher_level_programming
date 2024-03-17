@@ -20,7 +20,6 @@ def filter():
     filtered = results.fetch_row(maxrows=0)
     for value in filtered:
         print(value)
-
-
+    db.close()
 if __name__ == "__main__":
     filter()
