@@ -1,3 +1,3 @@
 #!/bin/bash
 #deleting from server
-curl -X DELETE "$1"
+curl -sX DELETE "$1"
