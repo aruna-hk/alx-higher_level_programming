@@ -2,4 +2,4 @@
 #cURL body size
 #get the body size of the response
 
-curl -sI "$1" | grep -i "Content-Length" | cut -d' ' -f2
+curl -X GET -sI  "$1" | grep -i "Content-Length" | cut -d" " -f2
