@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 #display body content
-curl -L $1
+curl -L "$1"
