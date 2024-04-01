@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 #cURL body size
 #get the body size of the response
 
