@@ -2,7 +2,10 @@
 /*
  * read response status code
  */
-const request = require("request");
+const request = require('request');
 request(process.argv[2], (error, response, body) => {
-    console.log("code:",response.statusCode);
+  if (error) {
+    console.log(error);
+  }
+  console.log('code:', response.statusCode);
 });
