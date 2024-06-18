@@ -1,7 +1,8 @@
 #!/usr/bin/python3
-
-""" takes url as args """
-
+"""
+    takes url as args and return header filed with
+    X-Request-Id
+"""
 import sys
 import urllib
 
