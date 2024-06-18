@@ -3,7 +3,9 @@
 """ takes url as args """
 
 import sys
-import urllib.request
+import urllib
+
+from urllib import request
 
 with urllib.request.urlopen(sys.argv[1]) as response:
     headers = response.info()
