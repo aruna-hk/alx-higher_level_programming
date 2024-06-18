@@ -1,13 +1,16 @@
 #!/usr/bin/python3
+
 """
-    takes url as args and return header filed with
-    X-Request-Id
+  that takes in a URL as argument and
+  sends a request to the URL and display X-Request-Id header
+  content
 """
 import sys
-import urllib
+import urllib.request
 
-from urllib import request
+if __name__ == "__main__":
+    url = sys.argv[1]
 
-with urllib.request.urlopen(sys.argv[1]) as response:
-    headers = response.info()
-    print(headers['X-Request-Id'])
+    request = urllib.request.Request(url)
+    with urllib.request.urlopen(request) as response:
+        print(dict(response.headers).get("X-Request-Id"))
